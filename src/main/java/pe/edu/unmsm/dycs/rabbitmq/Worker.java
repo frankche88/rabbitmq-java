@@ -15,9 +15,19 @@ public class Worker {
 	private static final String TASK_QUEUE_NAME = "events";
 
 	public static void main(String[] argv) throws Exception {
+		
+		//"amqp://bzizimsp:LKVNczGhhTNTsk-CxeLgdE7MAFt_8Nbq@chimpanzee.rmq.cloudamqp.com/bzizimsp"
+		String mqUrl = System.getenv().get("MQ_URL");
+		
+		System.out.println("Worker.main()" + mqUrl);
+		
+		
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost("localhost");
+		
+		factory.setUri(mqUrl);
+		
 		final Connection connection = factory.newConnection();
+		
 		final Channel channel = connection.createChannel();
 
 		channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);

@@ -4,5 +4,5 @@ memory: 1024M
 no-route: true
 applications:
 - name: banking-dropwizard
-  path: build/libs/rabbitmq-java.jar
+  path: build/libs/rabbitmq-java-all.jar
 command: echo "Starting banking-dropwizard." && $PWD/.java-buildpack/open_jdk_jre/bin/java -cp $PWD/*:. $JAVA_OPTS -Djava.io.tmpdir=$TMPDIR pe.edu.unmsm.dycs.rabbitmq.Worker
